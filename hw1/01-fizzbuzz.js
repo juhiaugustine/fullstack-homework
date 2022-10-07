@@ -10,7 +10,18 @@ Use console.log() to write the proper output to the command line.
 **/
 
 const fizzbuzz = () => {
-  // Add your code here
+  for(let i = 1; i <= 100; i++)
+  {
+    var result = i;
+
+    if (i % 15 == 0) result = "fizzbuzz";
+    
+    else if (i % 5 == 0) result = "buzz";
+    
+    else if (i % 3 == 0) result = "fizz";
+    
+    console.log(result);
+  }
 };
 
 fizzbuzz();
