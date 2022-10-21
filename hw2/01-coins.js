@@ -19,35 +19,23 @@ const calculateChange = (input) => {
 
   let pennies = amountInCents;
   
-  let dollarString = "";
-  let quarterString = "";
-  let dimeString = "";
-  let nickelString = "";
-  let penniesString = "";
-
-  dollarString = dollars == 0 ? "" 
-                : dollars == 1 ? dollars.toString() + " dollar, "
-                : dollars.toString() + " dollars, ";
-
-  quarterString = quarters == 0 ? "" 
-                : quarters == 1 ? quarters.toString() + " quarter, "
-                : quarters.toString() + " quarters, ";
-
-  dimeString = dimes == 0 ? "" 
-                : dimes == 1 ? dimes.toString() + " dime, "
-                : dimes.toString() + " dimes, ";
-
-  nickelString = nickels == 0 ? "" 
-                : nickels == 1 ? nickels.toString() + " nickel, "
-                : nickels.toString() + " nickels, ";
-
-  penniesString = pennies == 0 ? "" 
-                : pennies == 1 ? pennies.toString() + " penny"
-                : pennies.toString() + " pennies";
+  const dollarString = getCoinConverterString(dollars," dollar, "," dollars, ");
+  const quarterString = getCoinConverterString(quarters," quarter, "," quarters, ");
+  const dimeString = getCoinConverterString(dimes," dime, "," dimes, ");
+  const nickelString = getCoinConverterString(nickels," nickel, "," nickels, ");
+  const penniesString = getCoinConverterString(pennies," penny"," pennies");
 
   result = dollarString + quarterString + dimeString + nickelString + penniesString;
   return result;
 };
+
+function getCoinConverterString(change, singularString, pluralString){
+    
+  const resultString = change == 0 ? "" 
+              : change == 1 ? change.toString() + singularString
+              : change.toString() + pluralString;
+  return resultString;
+};   
 
 // Sample Test Cases
 console.log(calculateChange(4.62));

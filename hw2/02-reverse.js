@@ -2,8 +2,8 @@
 
 // Add your code here
 function reverseNumber() {
-    let inputValue = parseInt(document.getElementById("input").value, 10);
-    let stringInputValue = inputValue.toString();
+ 
+    let stringInputValue = document.getElementById("input").value;
     let inputValueArray = stringInputValue.split('');
     let resultLabel = document.getElementById('result_label');
     let resultString = '';
