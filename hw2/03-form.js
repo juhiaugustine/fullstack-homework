@@ -34,7 +34,6 @@ function isValidEmail(email)
 }
 
 function isValidFormSubmission(name, email) {
-    let errorMessage = "";
     if (name == "" && email == "") {
         alert("Please enter your name and email address");
     } else if (name == "") {
