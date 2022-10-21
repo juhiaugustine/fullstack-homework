@@ -4,19 +4,8 @@
 
 function submitForm(){
     const username = document.getElementById("username").value;
-    if(username == "") {
-        alert("Enter your Name");
-        return;
-    }
     const email = document.getElementById("email").value;
-    if(email == "") {
-        alert("Enter your Email");
-        return;
-    }
-    if(!isValidEmail(email)) {
-        alert("Enter a valid Email address");
-        return;
-    }
+    if (!isValidFormSubmission(username, email)) return;
     console.group("Form Details");
     console.log("========== Form Submission ===========");
     
@@ -34,6 +23,7 @@ function submitForm(){
         console.log("Newsletter: No, thank you.");
     console.groupEnd();
 };
+
 function isValidEmail(email)
 {
     return String(email)
@@ -43,6 +33,21 @@ function isValidEmail(email)
     );
 }
 
+function isValidFormSubmission(name, email) {
+    let errorMessage = "";
+    if (name == "" && email == "") {
+        alert("Please enter your name and email address");
+    } else if (name == "") {
+        alert("Please enter your name");
+    } else if (email == "") {
+        alert("Please enter your email address");
+    } else if (!isValidEmail(email)) {
+        alert("Please enter a valid email address") 
+    } else { 
+        return true;
+    }
+    return false;
+}
 function resetForm(){
     document.getElementById("myform").reset();
 };

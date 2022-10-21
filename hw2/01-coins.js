@@ -25,7 +25,7 @@ const calculateChange = (input) => {
   const nickelString = getCoinConverterString(nickels," nickel, "," nickels, ");
   const penniesString = getCoinConverterString(pennies," penny"," pennies");
 
-  result = dollarString + quarterString + dimeString + nickelString + penniesString;
+  result = `${input} ==> ` + dollarString + quarterString + dimeString + nickelString + penniesString;
   return result;
 };
 
