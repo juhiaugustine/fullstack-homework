@@ -42,8 +42,6 @@ const server = http.createServer((req, res) => {
     res.write(`<ul> ${routeResults} </ul>`);
     res.end();
   }
-
-  // Add your code here
 });
 
 server.listen(port, () => {

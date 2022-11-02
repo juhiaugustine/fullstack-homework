@@ -31,8 +31,6 @@ const server = http.createServer((req, res) => {
     res.write(`<ul> ${routeResults} </ul>`);
   }
 
-  // Add your code here
-
   res.end();
 });
 
