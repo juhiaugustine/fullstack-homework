@@ -1,4 +1,5 @@
 const http = require('http');
+const { traceDeprecation } = require('process');
 const port = process.env.PORT || 5001;
 
 // http://localhost:5001/welcome should return a status code 200 with a welcome message of your choice in html format
@@ -36,12 +37,55 @@ const server = http.createServer((req, res) => {
 
   if (req.url === '/') {
     let routeResults = getRoutes();
-
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write(`<h1>Exercise 01</h1>`);
     res.write(`<ul> ${routeResults} </ul>`);
     res.end();
+  } else if (req.url === '/welcome') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(`<h1>Welcome</h1>`);
+    res.end();
+  } else if (req.url === '/redirect') {
+    res.writeHead(302, {
+      'Location': '/redirected'
+    });
+    res.end();
+  } else if (req.url === '/cache') {
+    res.writeHead(200, {
+       'Content-Type': 'text/plain',
+       'Cache-Control': 'max-age=86400'
+    });
+    res.write(`this resource was cached`);
+    res.end();
+  } else if (req.url === '/cookie') {
+    res.writeHead(200, {
+       'Content-Type': 'text/plain',
+       'Set-Cookie': 'hello=world'
+    });
+    res.write(`cookies... yummm`);
+    res.end();
+  } else if (req.url === '/check-cookies') {
+    let message = `no`;
+    const cookie = req.headers.cookie;
+    if (typeof cookie === 'string') {
+      const cookies = cookie.split('; ');
+      cookies.forEach(function(c){
+        if(c.match(/hello=.+/))
+        message = `yes`;
+      });
+    }
+    res.writeHead(200, {
+      'Content-Type': 'text/plain'
+    });
+    res.write(`${message}`);
+    res.end();
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/html' });
+    res.write(`<h1> Incorrect URL ${req.url} </h1>`);
+    res.write(`<h3> Please try again! </h3>`);
+    res.end();
   }
+  // Add your code here
 });
 
 server.listen(port, () => {
