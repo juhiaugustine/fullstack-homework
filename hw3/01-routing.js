@@ -50,6 +50,10 @@ const server = http.createServer((req, res) => {
       'Location': '/redirected'
     });
     res.end();
+  } else if (req.url === '/redirected') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(`<h1>Redirected</h1>`);
+    res.end();
   } else if (req.url === '/cache') {
     res.writeHead(200, {
        'Content-Type': 'text/plain',
