@@ -1,6 +1,5 @@
 const http = require('http');
-
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 const server = http.createServer((req, res) => {
   const routes = [
@@ -19,7 +18,6 @@ const server = http.createServer((req, res) => {
     routes.forEach(
       (elem) => (result += `<li><a href="${elem}">${elem}</a></li>`)
     );
-
     return result;
   };
 
@@ -30,10 +28,21 @@ const server = http.createServer((req, res) => {
     res.write(`<h1>Exercise 02</h1>`);
 
     res.write(`<ul> ${routeResults} </ul>`);
+  } else {
+    var tableHtml = '';
+    let urlString = req.url.toString();
+    let queryParams = urlString.split('?').pop();
+    let cssStyle = 'style="border:1px solid black;"'
+    queryParams.split('&').forEach(function(queryParam){
+      const values = queryParam.split('=');
+      if(values.length == 2) {
+        tableHtml += `<tr><td ${cssStyle} >${values[0]}</td><td ${cssStyle}>${values[1]}</td></tr>`
+      }
+    });
+
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(`<table ${cssStyle}> ${tableHtml} </table>`);
   }
-
-  // Add your code here
-
   res.end();
 });
 
