@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Form Exercise</title>
-  </head>
-  <body>
-    <!-- Add your code here -->
-  </body>
-</html>
+ <!DOCTYPE html>
+ <html>
+   <head>
+   <title>Example Login Form</title>
+   </head>
+   <body>
+   <form action="/submit" method="post">
+     <!-- user input-->
+     Username:<br>
+     <input type="text" name="username" placeholder="Username" required><br><br>
+     Email:<br>
+     <input type="email" name="email" placeholder="Email" required><br><br>
+     Comments:<br>
+     <input type="text" name="comments" placeholder="Comments"><br><br>
+     Newsletter:<br>
+     <input type="checkbox" name="newsletter" placeholder="Do you want to sign up for the newsletter"><br><br>
+     <!-- submit button -->
+     <input type="submit" value="submit">
+   </form>
+   </body>
+ </html>
