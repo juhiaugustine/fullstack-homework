@@ -14,12 +14,6 @@ const url = 'https://restcountries.com/v3.1/all';
 
 // Add your code here
 
-function populationSort(a, b) {
-  if (a.population < b.population) { return -1; }
-  if (a.population > b.population) { return 1; }
-  return 0;
-}
-
 async function makeNetworkRequest() {
   let countries = [];
   await axios.get(url)
@@ -126,7 +120,6 @@ app.get('/regions', (req, res) => {
       results: regions,
     });
   });
-
 });
 
 app.listen(port, () => {
