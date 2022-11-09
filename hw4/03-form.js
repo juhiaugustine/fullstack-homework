@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
+
 app.get('/submit', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
