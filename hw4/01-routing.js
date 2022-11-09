@@ -40,9 +40,31 @@ app.get('/', (req, res) => {
   res.end();
 });
 
-app.get('/welcome', (req, res) => {});
+app.get('/welcome', (req, res) => {
+  res.status(200);
+  res.send("<html><head></head><body><h1>Welcome</h1></body></html>");
+});
+app.get('/redirect', (req, res)=> {
+  res.redirect(302,'/redirected');
+});
+app.get('/redirected', (req, res)=> {
+  res.send("Redirected Successfully");
+});
+app.get('/cache', (req, res) =>{
+  res.status(200);
+  res.set('Cache-Control', 'public, max-age=86400');
+  res.set('Content-Type', 'text/plain').send("this resource was cached");
+});
+app.get('/cookie', (req, res) =>{
+  res.cookie('Hello', 'world');
+  res.set('Content-Type', 'text/plain').send("cookies... yummm");
+});
+app.route('/*')
+    .get(function(req, res) {
+      res.status(404);
+      res.send("<html><head></head><body><h1>Error Page</h1></body></html>");
+    });
 
-// Add your code here
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
