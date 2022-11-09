@@ -4,11 +4,6 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const port = process.env.PORT || 5001;
 
-// Add your code here
-
-// Use the express-session module
-// app.use(/** ... */);
-
 // Initialization
 app.use(cookieParser());
 // Session Setup
